@@ -1,185 +1,148 @@
-# 📊 NeutroFi – AI-Powered Crypto Investment Assistant
+# 📊 CryptoOracle – AI-Powered Crypto Investment Assistant
 
-NeutroFi is a multi-agent AI system that helps crypto investors make smarter decisions.
-It combines **news analysis, fundamentals, technical indicators, and community sentiment** into a clear, plain-English investment verdict.
+CryptoOracle is a multi-agent AI system designed to help crypto investors make confident and informed decisions.  
+It combines **news analysis, fundamentals, technical indicators, and market sentiment** into a single, easy-to-understand investment verdict.
 
-Built using **LangGraph, LangChain, Python, and Streamlit**, NeutroFi provides both **AI-powered insights** and an easy-to-use **dashboard** for investors.
+Built using **LangGraph, LangChain, Python, and Streamlit**, CryptoOracle delivers AI-generated insights through a clean and interactive dashboard.
 
 ---
 
 ## 🚀 Features
 
-✅ **Multi-Agent AI System**
+### 🤖 Multi-Agent AI System
 
-* **News Analyst** → Fetches credible crypto news & flags regulatory/macro risks.
-* **Fundamental Analyst** → Analyzes supply, issuance, liquidity, and developer activity.
-* **Technical Analyst** → Computes RSI, MACD, Bollinger Bands.
-* **Sentiment Analyst** → Filters Reddit chatter into usable community signals.
-* **Research Analyst** → Summarizes all agent insights into one clear view.
-* **Risk Management Analyst** → Matches results with the user’s risk appetite & timeframe.
-
-✅ **User-Friendly Dashboard** (Streamlit)
-
-* Select your **coin**, **buyer type (new/existing)**, and **investment duration**.
-* Get a **final recommendation** (`Buy`, `Hold`, or `Sell`) with **confidence score**.
-* Explore details via tabs: **News, Fundamentals, Technical, Sentiment, Overall Summary**.
-
-✅ **APIs & Tools Integrated**
-
-* CoinGecko (fundamentals & price data)
-* CryptoPanic, Google News, Reddit (news & sentiment)
-* Pandas-TA (technical indicators)
-* LangGraph (multi-agent workflow orchestration)
+* **News Analyst** → Fetches verified crypto-related news and major macro signals.  
+* **Fundamental Analyst** → Evaluates supply, liquidity, issuance, and ecosystem activity.  
+* **Technical Analyst** → Computes RSI, MACD, Bollinger Bands, and trend strength.  
+* **Sentiment Analyst** → Uses Fear & Greed Index + news sentiment to estimate market psychology.  
+* **Research Analyst** → Summarizes all findings into a clear human-style narrative.  
+* **Risk Management Analyst** → Aligns the final recommendation with investor risk profile and time horizon.
 
 ---
 
-## 🖥️ User Flow
+### 🖥️ User-Friendly Dashboard (Streamlit)
 
-### 1. Input Preferences
+* Choose cryptocurrency  
+* Select investor profile (New / Existing)  
+* Select investment duration (Short / Medium / Long term)  
+* Receive final output:
 
-User selects:
+Recommendation → Buy / Hold / Sell
+Confidence Score → e.g., 0.72
+Time Horizon → Based on your selection
 
-* Cryptocurrency (e.g., Bitcoin, Ethereum, Solana)
-* Buyer Type (New / Existing)
-* Investment Duration (Short, Medium, Long term)
 
-📸 *Sample Input Screen:*
+Includes detailed tabs:
 
-```
-What cryptocurrency are you interested in today? → Bitcoin  
-What describes you best? → New Buyer  
-Investment Duration → Short term (1-3 months)  
-```
+- 📰 News  
+- 📊 Fundamentals  
+- 📈 Technical Analysis  
+- 💬 Market Sentiment  
+- 📚 Final Summary  
 
-### 2. AI Verdict Screen
+---
 
-* **Final Recommendation** → Buy / Hold / Sell
-* **Confidence Score** → e.g. 0.70
-* **Timeframe** → Matches selected duration
-* **Reason** → Plain-English explanation
+### 🔗 APIs & Tools Integrated
 
-📸 *Sample Verdict:*
+| Component | Provider |
+|----------|----------|
+| Fundamentals & Price Data | CoinGecko API |
+| News Intelligence | Tavily Search API |
+| Market Sentiment | Fear & Greed Index API |
+| TA Indicators | Pandas-TA |
+| AI Reasoning | LangChain + LangGraph |
 
-```
-Neu’s Verdict for Bitcoin
-✅ Final Recommendation: Hold
+> ❗ Reddit functionality has been removed — no authentication is required.
+
+---
+
+## 🖥️ Example Input
+
+Cryptocurrency → Bitcoin
+Investor Type → New Buyer
+Investment Duration → Short Term (1–3 months)
+
+
+---
+
+## 🧠 Sample AI Verdict
+
+CryptoOracle Verdict for Bitcoin
+✔ Recommendation: HOLD
 📈 Confidence Score: 0.70
-⏳ Timeframe: Short term (1–3 months)
-💡 Reason: New entry not advised unless confidence and long-term view are strong.
-```
+⏳ Timeframe: Short Term
 
-### 3. Detailed Reports
+💡 Reasoning:
 
-Tabs provide deeper insights:
+Technical momentum is uncertain.
 
-* **News** → Summarized headlines + sentiment score.
-* **Fundamentals** → Supply, liquidity, issuance, developer activity.
-* **Technical** → RSI, MACD, Bollinger Bands, trend strength.
-* **Sentiment** → Reddit discussion signals.
-* **Overall Summary** → Clear takeaway for the investor.
+Sentiment recovering but cautious.
 
-📸 *Example News Report:*
+Fundamentals remain strong for long-term outlook.
 
-| Date   | Headline                            | Sentiment |
-| ------ | ----------------------------------- | --------- |
-| Aug 18 | Crypto Inflows Reach \$3.75 Billion | Positive  |
-| Aug 14 | US Treasury Won’t Buy Bitcoin       | Negative  |
-| Aug 11 | Ethereum Outpaces Bitcoin YTD Gains | Negative  |
-
-**Summary (auto-generated):**
-
-> The recent news paints a mixed picture for Bitcoin. While overall market inflows are positive, Bitcoin is consistently overshadowed by Ethereum’s performance. Short-term outlook leans negative, but long-term adoption remains strong.
 
 ---
 
 ## ⚙️ Tech Stack
 
-* **Python** (core logic)
-* **LangGraph & LangChain** (multi-agent orchestration)
-* **Streamlit** (frontend dashboard)
-* **CoinGecko API** (fundamentals & price data)
-* **CryptoPanic / Google News / Reddit APIs** (news & sentiment)
-* **pandas, pandas-ta** (indicators & data processing)
+- **Python**
+- **Streamlit**
+- **LangChain**
+- **LangGraph**
+- **Pandas-TA**
+- **Tavily API**
+- **CoinGecko API**
 
 ---
 
 ## 🏗️ Project Structure
 
-```
-├── agents/  
-│   ├── news_agent.py          # Fetches crypto news  
-│   ├── fundamental_agent.py   # Collects fundamentals  
-│   ├── technical_agent.py     # Computes RSI, MACD, Bollinger Bands  
-│   ├── sentiment_agent.py     # Reddit sentiment scraper  
+
+
+├── agents/
+│ ├── news_agent.py
+│ ├── fundamental_agent.py
+│ ├── technical_agent.py
+│ ├── sentiment_agent.py
 │
-├── tools.py                   # Shared LangChain tools for agents  
-├── app.py                     # Streamlit frontend (main dashboard)  
-├── graph.py                   # LangGraph workflow (agent orchestration)  
-├── README.md                  # Project documentation  
-```
+├── toolkit/
+│ ├── crypto_toolkit.py
+│ ├── crypto_tools_wrapped.py
+│ ├── sentiment.py # Market sentiment module (Fear & Greed)
+│
+├── app.py
+├── graph.py
+├── README.md
+└── requirements.txt
+
 
 ---
 
 ## 🛠️ Setup & Run
 
-1️⃣ Clone the repo:
+### 1️⃣ Clone the Repository
 
 ```bash
-git clone https://github.com/bhavadharanik/NeutroFi.git
-cd NeutroFi
-```
+git clone https://github.com/YourUsername/CryptoOracle.git
+cd CryptoOracle
 
-2️⃣ Install dependencies:
-
-```bash
+2️⃣ Install Dependencies
 pip install -r requirements.txt
-```
 
-3️⃣ Add API keys (if required) in `.env`:
-
-```
+3️⃣ Create .env File
 COINGECKO_API_KEY=your_key_here
-CRYPTO_PANIC_KEY=your_key_here
-```
+TAVILY_API_KEY=your_key_here
+GROQ_API_KEY=your_key_here
 
-4️⃣ Run Streamlit app:
-
-```bash
+4️⃣ Run the Application
 streamlit run app.py
-```
 
----
+📌 Future Enhancements
 
-## 🎯 Example Workflow
+Add Twitter/X sentiment scoring
 
-1. Run the dashboard.
-2. Select **Bitcoin**, mark yourself as **New Buyer**, set **Short Term (1–3 months)**.
-3. Click **Run Analytics**.
-4. NeutroFi gathers **news, fundamentals, technicals, sentiment**, and produces a **final verdict**:
+Support portfolio tracking and alerts
 
-👉 *“Hold – Confidence 0.70. New entry not advised unless confidence and long-term view are strong.”*
+Expand to DeFi protocols and L2 ecosystems
 
----
-
-## 📌 Future Improvements
-
-* Add more coins & DeFi protocols.
-* Enhance sentiment analysis using transformer-based models.
-* Introduce portfolio tracking & personalized alerts.
-* Multi-language support for international investors.
-
----
-
-## 👥 Team – Neural Nomads
-
-* **Bhavadharani Kanagaraj**
-* **Maneesha Sandagomi**
-* **Sivagar Rajasekaran**
-* **Samuel Sonowo**
-
----
-
-🔥 NeutroFi turns **complex crypto data** into **simple, actionable insights** — helping investors cut through noise and make confident decisions.
-
-
-See it in action : https://neutrofi.streamlit.app/
+Add multilingual support
