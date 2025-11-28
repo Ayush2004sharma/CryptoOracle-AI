@@ -1,0 +1,14 @@
+[theme]
+# Let the user still switch between modes in the Streamlit menu
+base = "light"  # default start mode ("light" is also valid)
+
+# Brand colors
+primaryColor = "#1A5396"              # Your blue
+textColor = "#131313"                 # Light text on dark
+
+# Backgrounds
+backgroundColor = "#FAFAFA"           # Main background
+secondaryBackgroundColor = "#F2F2F2"  # Cards / panels background
+
+# (Optional) Fonts
+font = "sans serif"

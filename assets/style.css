@@ -1,0 +1,440 @@
+:root {
+  /* Map Streamlit vars to app vars */
+  --nf-primary: var(--primary-color);
+  --nf-secondary: var(--accent-color);
+
+  --nf-bg: var(--background-color);
+  --nf-card: var(--secondary-background-color);
+  --nf-text: var(--text-color);
+
+  /* Extra brand helpers (keep your accent) */
+  --nf-accent: #10b981;     /* green accent */
+  --nf-warn: #f59e0b;
+  --nf-danger: #ef4444;
+}
+
+
+
+/* ---------- PAGE WRAPPER ---------- */
+[data-testid="stVerticalBlock"][data-testid-key="page"] > div {
+  /* soft branded glow that adapts to theme via color-mix */
+  --priGlow: color-mix(in srgb, var(--nf-primary) 30%, transparent);
+  --accGlow: color-mix(in srgb, var(--nf-accent) 22%, transparent);
+
+  background:
+    radial-gradient(1200px 600px at 20% -10%, var(--priGlow), transparent 60%),
+    radial-gradient(900px 500px at 90% -20%, var(--accGlow), transparent 60%),
+    var(--nf-bg);
+  color: var(--nf-text);
+  min-height: 100vh;
+  padding: 0;
+}
+
+
+
+/* === app styling === */
+/* side bar navigation */
+/* .st-emotion-cache-1csi29a {
+
+}
+
+.st-emotion-cache-1fa7f7o {
+  background-color: #1A5396;
+} */
+
+.st-emotion-cache-1d398ex {
+  text-transform: capitalize !important;
+  /* color: #fff; */
+}
+
+.st-emotion-cache-13eh0c8 {
+  text-transform: capitalize !important;
+}
+
+
+/* Navigation */
+.nav {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: .5rem 0;
+}
+
+.logo {
+    height: 50px;
+    width: 50px;
+    border-radius: 50%;
+}
+
+
+/* Hero Section */
+.hero {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 1rem 0rem .5rem ;
+}
+
+.badge {
+  display:inline-flex;
+  align-items:center;
+  gap:.5rem;
+  padding:.35rem .6rem;
+  border:1px solid rgba(139,92,246,.35);
+  border-radius:999px;
+  color:#c4b5fd;
+  background:rgba(139,92,246,.08);
+  font-size:.85rem;
+}
+
+.badge svg {
+  height:16px;
+  width:16px;
+}
+
+.title {
+  font-size: clamp(2rem, 5vw, 3.25rem); 
+  font-weight: 800; 
+  letter-spacing: -0.02em;
+}
+
+.subtitle {
+  font-size: clamp(1rem, 2.5vw, 1.25rem); 
+  color: var(--muted); 
+  /* margin-top:.75rem; */
+}
+
+
+/* CTA */
+.cta {
+  width: 50%;
+  text-align: center;
+  margin-top: 1.5rem;
+}
+
+.st-emotion-cache-8atqhb {
+  display: flex;
+  justify-content: center;
+}
+
+.st-emotion-cache-1krtkoa {
+  background-color: #1A5396;
+  color: white;
+  border-color: #1A5396;
+  width: 30%;
+}
+
+.st-emotion-cache-1krtkoa:hover {
+  background-color: white;
+  color: #1A5396;
+  border-color: #1A5396;
+  /* width: 50%; */
+}
+
+
+.st-emotion-cache-t0b1k4 {
+  background-color: #1A5396;
+  color: white;
+  border-color: #1A5396;
+  width: 30%;
+}
+
+.st-emotion-cache-t0b1k4:hover {
+  background-color: white;
+  color: #1A5396;
+  border-color: #1A5396;
+  /* width: 50%; */
+}
+
+/* KPI Section */
+.kpis {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  justify-content: center;
+  margin-top: 3rem;
+}
+
+.kpi {
+  flex: 1 1 calc(33.333% - 1rem);
+  max-width: calc(33.333% - 1rem);
+  background: #F2F2F2;
+  /* background: var(--nf-card); */
+  border:1px solid #E6E6E6;
+  border-radius: 16px;
+  padding:1.25rem;
+  text-align:center;
+  box-sizing: border-box;
+  transition: transform .18s ease, box-shadow .18s ease, border-color .18s ease, background .18s ease;
+}
+
+.kpi h3 {
+  margin:.25rem 0 0 0;
+}
+
+.kpi p {
+  color: var(--muted); 
+  margin:0;
+}
+
+/* .kpi, .card {
+  transition: transform .18s ease, box-shadow .18s ease, border-color .18s ease, background .18s ease;
+  /* box-shadow: 0 4px 18px rgba(0,0,0,.08); */
+/* } */
+
+.kpi:hover, .card:hover {
+  transform: translateY(-4px);
+  border-color: color-mix(in srgb, var(--nf-primary) 30%, transparent);
+  box-shadow: 0 10px 28px rgba(0,0,0,.14);
+}
+
+.kpi h3, .card h4 { letter-spacing: .1px; }
+
+/* Features */
+.grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  justify-content: center;
+  margin-top: 2rem;
+}
+
+.card {
+  flex: 1 1 calc(33.333% - 1rem);
+  max-width: calc(33.333% - 1rem);
+  /* background: linear-gradient(180deg, rgba(255,255,255,.04), rgba(255,255,255,.02)); */
+  background: #F7F7F7;
+  border:1px solid rgba(255,255,255,.08);
+  backdrop-filter: blur(6px);
+  border-radius: 18px;
+  padding: 1.25rem;
+  box-sizing: border-box;
+  transition: transform .18s ease, box-shadow .18s ease, border-color .18s ease, background .18s ease;
+  box-shadow: 0 4px 18px rgba(0,0,0,.08);
+}
+
+.card h4 {
+  margin:0 0 .35rem 0; 
+  font-size:1.05rem;
+}
+
+.card p {
+  margin:0; 
+  color: var(--muted);
+}
+
+/* How Section */
+.how {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  margin-top: 4rem;
+  background: var(--nf-primary);
+}
+
+.how ul {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  list-style: none;
+  padding: 1rem;
+  margin: 0;
+}
+
+.how ul li {
+  flex: 1 1 calc(33.333% - 1rem);
+  max-width: calc(33.333% - 1rem);
+  margin: 0 .5rem;
+  padding: .5rem 2rem;
+  /* background: rgba(17,24,39,.66); */
+  /* border-radius: 10px; */
+  background: #F2F2F2;
+  /* background: var(--nf-primary); */
+  border:1px solid #E6E6E6;
+  border-radius: 16px;
+  /* padding:1.25rem; */
+}
+
+.how ul li span.emo {
+  font-size: 2rem;
+  margin-right: 1.5rem;
+}
+
+
+
+/* Footer */
+.footer {
+  margin-top: 3rem;
+  color: #9ca3af;
+  font-size: .9rem;
+}
+
+.footer hr {
+  /* border-color:rgba(255,255,255,.08); */
+  border-color: #E6E6E6;
+  border-width:0 0 1px;
+  margin:2rem 0;
+}
+
+.disclaimer {
+  font-size: .85rem;
+  color: #9ca3af;
+  text-align: center;
+  width: 100%;
+}
+
+
+
+
+
+
+
+
+
+
+/* --- Animated gradient orbs behind hero --- */
+[data-testid="stVerticalBlock"][data-testid-key="page"] > div {
+  position: relative;
+  overflow: hidden; /* keep orbs clipped */
+}
+.orbs-wrap::before,
+.orbs-wrap::after {
+  content: "";
+  position: absolute;
+  inset: auto;
+  width: 60vmax; height: 60vmax;
+  border-radius: 50%;
+  filter: blur(80px);
+  opacity: 0.18;
+  z-index: 0;
+  animation: floatOrb 18s ease-in-out infinite alternate;
+}
+.orbs-wrap::before {
+  top: -30vmax; left: -10vmax;
+  background: radial-gradient(closest-side,
+      color-mix(in srgb, var(--nf-primary) 55%, transparent) 0%,
+      transparent 70%);
+}
+.orbs-wrap::after {
+  top: -35vmax; right: -15vmax;
+  background: radial-gradient(closest-side,
+      color-mix(in srgb, var(--nf-accent) 55%, transparent) 0%,
+      transparent 70%);
+  animation-delay: 1.2s;
+}
+@keyframes floatOrb {
+  from { transform: translateY(0) translateX(0) scale(1); }
+  to   { transform: translateY(20px) translateX(-10px) scale(1.05); }
+}
+
+/* --- Entry animation for hero title/badge --- */
+.hero { position: relative; z-index: 1; }
+.hero .badge {
+  box-shadow: 0 0 0 1px color-mix(in srgb, var(--nf-primary) 35%, transparent) inset,
+              0 0 12px color-mix(in srgb, var(--nf-primary) 25%, transparent);
+  animation: popIn .6s ease-out both;
+}
+.title { animation: riseIn .7s ease-out .05s both; }
+@keyframes popIn   { from{opacity:0; transform:scale(.98)} to{opacity:1; transform:scale(1)} }
+@keyframes riseIn  { from{opacity:0; transform:translateY(8px)} to{opacity:1; transform:translateY(0)} }
+
+/* --- Make “Buy/Hold” feel alive without flashing --- */
+.title span { filter: drop-shadow(0 1px 0 rgba(0,0,0,.08)); }
+
+
+@keyframes arrowPulse {
+  from { transform: translate(-50%, -50%) scale(1); opacity: .9; }
+  to   { transform: translate(-50%, -50%) scale(1.08); opacity: 1; }
+}
+
+/* --- Subtle hover on logo so it feels interactive --- */
+[data-testid="stVerticalBlock"][data-testid-key="nav"] .logo {
+  transition: transform .2s ease, filter .2s ease;
+}
+[data-testid="stVerticalBlock"][data-testid-key="nav"] .logo:hover {
+  transform: translateY(-2px) scale(1.02);
+  filter: drop-shadow(0 4px 10px rgba(0,0,0,.25));
+}
+
+
+
+
+
+
+
+
+/* ===================== Floating Coins (hero flair) ===================== */
+/* Theme variables already mapped: var(--background-color), var(--text-color), var(--primary-color) */
+:root{
+  --nf-primary: var(--primary-color);
+  --nf-text: var(--text-color);
+}
+
+/* Row wrapper */
+.coin-row{
+  position: relative;
+  z-index: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 22px;
+  height: 72px;                /* keeps layout steady */
+  margin: 8px auto 4px;
+  pointer-events: none;         /* decorative only */
+}
+
+/* Generic coin */
+.coin{
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 800;
+  font-size: 26px;
+  line-height: 1;
+  color: #fff;
+  box-shadow:
+    0 6px 18px rgba(0,0,0,.18),
+    inset 0 1px 2px rgba(255,255,255,.25);
+  border: 1px solid rgba(0,0,0,.15);
+  filter: drop-shadow(0 2px 6px rgba(0,0,0,.25));
+  /* Motion */
+  animation: coinBob 3.8s ease-in-out infinite;
+  will-change: transform;
+}
+
+/* Per-coin palettes (light/dark friendly) */
+.coin.btc{
+  background: radial-gradient(circle at 35% 30%, #ffd27a 0%, #f59e0b 60%, #b45309 100%);
+}
+.coin.eth{
+  background: radial-gradient(circle at 35% 30%, #c4b5fd 0%, #8b5cf6 55%, #4c1d95 100%);
+}
+.coin.sol{
+  background: linear-gradient(145deg, #22d3ee 0%, #10b981 50%, #8b5cf6 100%);
+}
+
+/* Slightly different timings/side drift so they feel organic */
+.coin:nth-child(1){ animation-duration: 4.2s; animation-delay: .1s; }
+.coin:nth-child(2){ animation-duration: 3.9s; animation-delay: .35s; }
+.coin:nth-child(3){ animation-duration: 4.4s; animation-delay: .2s; }
+
+@keyframes coinBob{
+  0%   { transform: translateX(0) translateY(0) rotate(0deg); }
+  25%  { transform: translateX(-4px) translateY(-6px) rotate(-1.5deg); }
+  50%  { transform: translateX(0) translateY(0) rotate(0deg); }
+  75%  { transform: translateX(4px) translateY(-5px) rotate(1.2deg); }
+  100% { transform: translateX(0) translateY(0) rotate(0deg); }
+}
+
+/* Respect users who prefer reduced motion */
+@media (prefers-reduced-motion: reduce){
+  .coin, .orbs-wrap::before, .orbs-wrap::after{
+    animation: none !important;
+  }
+}

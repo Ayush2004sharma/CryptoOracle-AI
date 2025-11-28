@@ -1,0 +1,291 @@
+/* ===== FORM ANIMATION ===== */
+
+/* Container that will hold the form */
+.form-container {
+  animation: fadeInUp 0.6s ease-out forwards;
+}
+
+/* When the form is being hidden */
+.form-container.fade-out {
+  animation: fadeOutUp 0.6s ease-in forwards;
+}
+
+
+/* side bar  */
+.st-emotion-cache-1fa7f7o {
+  text-transform: capitalize !important;
+}
+
+.st-emotion-cache-1w723zb {
+  padding-top: 3rem !important;
+}
+
+
+/* Fade in + slide up */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Fade out + slide up */
+@keyframes fadeOutUp {
+  from {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  to {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+}
+
+/* ===== RESULTS ANIMATION ===== */
+.results-container {
+  animation: fadeIn 0.7s ease-out forwards;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+
+/* === Header ==== */
+.title {
+  padding-bottom: 0rem !important;
+}
+
+
+/* === form styling === */
+.st-emotion-cache-an20vi {
+  border-color: #1A5396;
+}
+
+.st-emotion-cache-1v8kk03 p {
+  font-size: 1.1rem !important;
+  font-weight: 500 !important;
+}
+
+.st-emotion-cache-wfksaw {
+  gap: 2rem;
+}
+
+
+
+/* ===== BUTTONS ===== */
+.st-emotion-cache-efmxec {
+  background-color: #1A5396;
+  color: white;
+  border-color: #1A5396;
+  /* background-color: var(--pri); */
+  font-weight: 600;
+  /* border-radius: 12px; */
+  padding: .6rem 1.25rem;
+  border: none;
+  /* transition: background-color 0.2s ease, transform 0.15s ease; */
+  margin-top: 2rem;
+}
+
+.st-emotion-cache-efmxec:hover {
+  background-color: white;
+  color: #1A5396;
+  border-color: #1A5396;
+  box-shadow: none !important;
+  border: 1px solid #1A5396;
+}
+
+.reports-section {
+  margin-top: 1.5rem;
+  padding: 0.5rem;
+  /* background-color: rgba(255, 255, 255, 0.05); */
+  /* border-radius: 12px; */
+}
+
+
+
+
+/* === Footer === */
+/* Footer */
+.footer {
+  margin-top: 3rem;
+  color: #9ca3af;
+  font-size: .9rem;
+}
+
+.footer hr {
+  /* border-color:rgba(255,255,255,.08); */
+  border-color: #E6E6E6;
+  border-width:0 0 1px;
+  margin:2rem 0;
+}
+
+.disclaimer {
+  font-size: .85rem;
+  color: #9ca3af;
+  text-align: center;
+  width: 100%;
+}
+
+
+.st-emotion-cache-1nckjrl h1 {
+  /* font-size: 1.2rem; */
+  font-weight: 600;
+  /* color: #1A5396; */
+  margin-bottom: 1.5rem;
+}
+
+
+
+
+
+
+
+
+
+/* container: 2 cols, 2 rows */
+.decisions{
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;                 /* space between cards */
+  align-items: stretch;
+  justify-content: center;   /* center the grid in the row */
+  margin: 0 auto 1rem;
+  margin-bottom: 5rem !important;
+  /* max-width: 900px;          tweak to your liking */
+}
+
+/* each card takes half width (minus gap) */
+.decision-card{
+  flex: 1 1 calc(50% - 16px);
+  max-width: calc(50% - 16px);
+  background: var(--secondary-background-color, rgba(17,24,39,.06));
+  /* border: 1px solid color-mix(in srgb, var(--text-color, #eee) 12%, transparent); */
+  /* border-radius: 14px; */
+  /* padding: 18px 20px; */
+  justify-content: center;
+  align-items: center;
+  box-sizing: border-box;
+  /* text-align: center; */
+  background: #F2F2F2;
+  /* background: var(--nf-card); */
+  border:1px solid #E6E6E6;
+  border-radius: 16px;
+  padding:1.25rem;
+  text-align:center;
+  box-sizing: border-box;
+  transition: transform .18s ease, box-shadow .18s ease, border-color .18s ease, background .18s ease;
+}
+
+/* content polish */
+/* .decision-card h4, */
+.decision-card h5{
+  font-size: 1rem;
+  /* margin: 0 0 6px 0; */
+  font-weight: 300;
+  color: #9ca3af;
+}
+
+.result-text{
+  margin: 0;
+  font-weight: 700;
+  line-height: 1;
+  font-size: 1.3rem !important;
+}
+
+.reason-txt {
+  font-size: 1rem !important;
+}
+
+
+/* responsive: stack to 1 column on small screens */
+@media (max-width: 640px){
+  .decision-card{
+    flex: 1 1 100%;
+    max-width: 100%;
+  }
+}
+
+
+
+.st-emotion-cache-1nckjrl h2 {
+  font-size: 1rem !important;
+  font-weight: 400 !important;
+}
+
+
+
+
+
+
+/* Semantic palette */
+:root{
+  --ok:   #10b981;  /* green */
+  --warn: #f59e0b;  /* amber */
+  --bad:  #ef4444;  /* red */
+  --nf-card: var(--secondary-background-color, #f3f4f6);
+  --nf-text: var(--text-color, #111827);
+}
+
+/* Base card styling already exists; we just colorize via modifiers */
+.decision-card .result-text{
+  font-weight: 800;
+}
+
+.decision-card.status-buy {
+  background: #d1fae5;   /* soft green */
+  border: 2px solid #10b981;
+}
+.decision-card.status-buy .result-text {
+  color: #065f46;  /* dark green text */
+}
+
+.decision-card.status-hold {
+  background: #fef3c7;   /* soft yellow */
+  border: 2px solid #f59e0b;
+}
+.decision-card.status-hold .result-text {
+  color: #92400e;  /* dark yellow-brown text */
+}
+
+.decision-card.status-sell {
+  background: #fee2e2;   /* soft red */
+  border: 2px solid #ef4444;
+}
+.decision-card.status-sell .result-text {
+  color: #991b1b;  /* dark red text */
+}
+
+/* === Confidence bands background colors === */
+.decision-card.conf-low {
+  background: #fee2e2;   /* light red */
+  border: 2px solid #ef4444;
+}
+.decision-card.conf-low .result-text {
+  color: #991b1b;
+}
+
+.decision-card.conf-mid {
+  background: #fef3c7;   /* light yellow */
+  border: 2px solid #f59e0b;
+}
+.decision-card.conf-mid .result-text {
+  color: #92400e;
+}
+
+.decision-card.conf-high {
+  background: #d1fae5;   /* light green */
+  border: 2px solid #10b981;
+}
+.decision-card.conf-high .result-text {
+  color: #065f46;
+}
+
+/* Unknown confidence */
+.decision-card.conf-unknown { opacity: .9; }
+ 
