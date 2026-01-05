@@ -1,62 +1,79 @@
-# main.py
-
+from fastapi import FastAPI, HTTPException
 from dotenv import load_dotenv
 import os
 
-from langchain_google_genai import ChatGoogleGenerativeAI
-from langchain_core.messages import HumanMessage
-
-from toolkit.crypto_toolkit import MyCryptoToolKit
-from agents.news_agent import create_crypto_news_analyst
-from agents.fundamental_analysis_agent import create_fundamentals_analyst
-from agents.technical_anlyst_agent import create_technical_analyst
-from agents.social_media_agent import create_sentiment_analyst
-from langchain_groq import ChatGroq
-import os
-# ----------------------------------------------------
-# 🔐 LOAD ENV VARIABLES
-# ----------------------------------------------------
+from schemas import (
+    SignupSchema,
+    LoginSchema,
+    TokenResponse,
+    TradeRequest,
+)
+from database import user_collection
+from auth import hash_password, verify_password, create_access_token
+from main_runner import run_trading_pipeline
+ 
 load_dotenv()
 
-GEMINI_KEY = os.getenv("GOOGLE_API_KEY")
-CRYPTOPANIC_KEY = os.getenv("CRYPTO_PANIC_KEY")
-COINGECKO_KEY = os.getenv("COINGECKO_API_KEY")
-
-# ----------------------------------------------------
-# 🤖 LLM (Gemini)
-# ----------------------------------------------------
-
-llm = ChatGroq(
-    api_key=os.getenv("GROQ_API_KEY"),
-    model="llama-3.3-70b-versatile",
-    temperature=0.2,
+app = FastAPI(
+    title="AI Crypto Trading Research API",
+    version="1.0.0"
 )
 
+# -----------------------------
+# AUTH APIs
+# -----------------------------
 
-# ----------------------------------------------------
-# 🛠 TOOLKIT (News, Fundamentals, Technicals, Social Sentiment)
-# ----------------------------------------------------
-toolkit = MyCryptoToolKit(
-    cryptopanic_key=CRYPTOPANIC_KEY,
-    coingecko_key=COINGECKO_KEY,
-)
+@app.post("/auth/signup")
+async def signup(user: SignupSchema):
+    existing = await user_collection.find_one({"email": user.email})
+    if existing:
+        raise HTTPException(status_code=400, detail="User already exists")
 
-# ----------------------------------------------------
-# 📦 SHARED STATE
-# ----------------------------------------------------
-state = {
-    "coin": "bitcoin",
-    "company_of_interest": "bitcoin",
-    "trade_date": "2025-07-25",
-    "messages": [HumanMessage(content="Analyze this bitcoin.")],
-}
+    await user_collection.insert_one({
+        "name": user.name,
+        "email": user.email,
+        "password": hash_password(user.password)
+    })
 
-# ----------------------------------------------------
-# 🧠 RUN ANALYSIS
-# ----------------------------------------------------
+    return {"message": "User registered successfully"}
 
-## SENTIMENT ANALYSIS
-print("\n🔍 Running Sentiment Analyst...")
-sentiment_agent = create_sentiment_analyst(llm, toolkit)
-sent_result = sentiment_agent(state)
-print("\n💬 SENTIMENT REPORT:\n", sent_result["sentiment_report"])
+@app.post("/auth/login", response_model=TokenResponse)
+async def login(user: LoginSchema):
+    db_user = await user_collection.find_one({"email": user.email})
+    if not db_user:
+        raise HTTPException(status_code=401, detail="Invalid credentials")
+
+    if not verify_password(user.password, db_user["password"]):
+        raise HTTPException(status_code=401, detail="Invalid credentials")
+
+    token = create_access_token({"sub": user.email})
+
+    return {
+        "access_token": token,
+        "token_type": "bearer",
+        "name": db_user.get("name"),
+        "email": db_user.get("email"),
+    }
+
+
+# -----------------------------
+# AI TRADING API
+# -----------------------------
+
+@app.post("/trade/analyze")
+def analyze_trade(request: TradeRequest):
+    try:
+        result = run_trading_pipeline(
+            coin=request.coin,
+            trade_date=request.trade_date,
+            trader_position=request.trader_position,
+            duration=request.duration,
+        )
+
+        return {
+            "status": "success",
+            "data": result
+        }
+
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=str(e))
