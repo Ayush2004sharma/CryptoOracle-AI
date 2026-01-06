@@ -62,3 +62,7 @@ websocket-client==1.8.0
 xxhash==3.5.0
 zstandard==0.23.0
 langchain_groq
+fastapi
+uvicorn
+pydantic
+python-dotenv

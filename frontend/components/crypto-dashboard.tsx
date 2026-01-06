@@ -162,35 +162,6 @@ export function CryptoDashboard({ coin, setCoin }: DashboardProps) {
       variants={containerVariants}
       className="max-w-7xl mx-auto px-4 py-6 md:px-8 lg:py-10"
     >
-      <header className="mb-8 flex flex-col md:flex-row md:items-center justify-between gap-4">
-        <div className="flex items-center gap-3">
-          <motion.div
-            whileHover={{ scale: 1.05 }}
-            className="w-12 h-12 bg-primary rounded-xl flex items-center justify-center text-primary-foreground shadow-lg shadow-primary/10"
-          >
-            <ShieldCheck className="w-7 h-7" />
-          </motion.div>
-          <div>
-            <h1 className="text-3xl font-extrabold tracking-tight text-primary">
-              CryptoOracle
-            </h1>
-            <p className="text-muted-foreground font-medium">
-              Professional AI Analysis Terminal
-            </p>
-          </div>
-        </div>
-        <div className="flex items-center gap-3 bg-secondary/30 p-1.5 rounded-xl border border-border/40">
-          <ThemeToggle />
-          <Button
-            variant="ghost"
-            size="sm"
-            onClick={handleLogout}
-            className="font-semibold hover:bg-background transition-all"
-          >
-            Logout
-          </Button>
-        </div>
-      </header>
 
       <section className="mb-10">
         <Card className="border-border/40 shadow-xl shadow-black/[0.02] dark:shadow-white/[0.01] bg-card/60 backdrop-blur-md">
