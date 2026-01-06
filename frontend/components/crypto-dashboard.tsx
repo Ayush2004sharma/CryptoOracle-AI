@@ -32,6 +32,7 @@ import { ThemeToggle } from "@/components/theme-toggle";
 import { useRouter } from "next/navigation";
 import { COIN_CONFIG, SupportedCoin } from "@/lib/coins";
 import AnalysisControls from "@/components/AnalysisControls"
+import TradingViewChart from "./TradingViewChart";
 
 // Define API response type based on requirements
 type AnalysisResult = {
@@ -164,17 +165,30 @@ export function CryptoDashboard({ coin, setCoin }: DashboardProps) {
       className="max-w-7xl mx-auto px-4 py-6 md:px-8 lg:py-10"
     >
 
-      <AnalysisControls
-  coin={coin}
-  setCoin={setCoin}
-  profile={profile}
-  setProfile={setProfile}
-  duration={duration}
-  setDuration={setDuration}
-  loading={loading}
-  onAnalyze={handleAnalyze}
-/>
+<div className="grid grid-cols-[260px_1fr] gap-10 items-start">
+  
+  {/* LEFT: Analysis Controls */}
+  <AnalysisControls
+    coin={coin}
+    setCoin={setCoin}
+    profile={profile}
+    setProfile={setProfile}
+    duration={duration}
+    setDuration={setDuration}
+    loading={loading}
+    onAnalyze={handleAnalyze}
+  />
 
+  {/* RIGHT: MAIN INTERACTIVE CHART */}
+  <div className="relative rounded-2xl border border-border bg-card/60 backdrop-blur-md">
+
+    <TradingViewChart
+      symbol={COIN_CONFIG[coin].tv}
+      height={420}
+    />
+
+  </div>
+</div>
 
       <AnimatePresence mode="wait">
         {loading && (

@@ -15,11 +15,6 @@ export default function Page() {
   <Navbar />
 
   <CryptoDashboard coin={coin} setCoin={setCoin} />
-
-  <TradingViewChart
-    symbol={COIN_CONFIG[coin].tv}
-    height={600}
-  />
 </main>
 
 
