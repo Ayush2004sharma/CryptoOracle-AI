@@ -64,8 +64,9 @@ zstandard==0.23.0
 langchain_groq
 fastapi
 uvicorn
-pydantic
-python-dotenv
-email-validator
 motor
+pydantic
+email-validator
 passlib[bcrypt]
+python-jose[cryptography]
+python-dotenv

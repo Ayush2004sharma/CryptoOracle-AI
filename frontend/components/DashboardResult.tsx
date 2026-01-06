@@ -19,17 +19,26 @@ type Props = {
 }
 
 export default function DashboardResult({ result }: Props) {
-  const color =
+  const barColor =
     result.recommendation === "BUY"
-      ? "bg-buy text-buy"
+      ? "bg-buy"
       : result.recommendation === "SELL"
-      ? "bg-sell text-sell"
-      : "bg-hold text-hold"
+      ? "bg-sell"
+      : "bg-hold"
+
+  const textColor =
+    result.recommendation === "BUY"
+      ? "text-buy"
+      : result.recommendation === "SELL"
+      ? "text-sell"
+      : "text-hold"
 
   return (
     <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }}>
       <Card className="border-none shadow-2xl overflow-hidden bg-gradient-to-br from-card to-secondary/10">
-        <div className={`h-1.5 w-full ${color}`} />
+
+        {/* TOP COLOR BAR */}
+        <div className={`h-1.5 w-full ${barColor}`} />
 
         <CardHeader className="flex flex-col sm:flex-row justify-between gap-10 px-8 pt-10 pb-8">
           <div className="space-y-2">
@@ -40,12 +49,15 @@ export default function DashboardResult({ result }: Props) {
               Primary Verdict
             </Badge>
 
-            <CardTitle className={`text-6xl md:text-7xl font-black ${color}`}>
+            {/* ✅ TEXT COLOR ONLY */}
+            <CardTitle
+              className={`text-6xl md:text-7xl font-black ${textColor}`}
+            >
               {result.recommendation}
             </CardTitle>
           </div>
 
-          {/* Confidence */}
+          {/* CONFIDENCE */}
           <div className="bg-secondary/20 p-6 rounded-2xl border border-border/40 min-w-[220px]">
             <span className="uppercase text-[10px] text-muted-foreground">
               Oracle Confidence

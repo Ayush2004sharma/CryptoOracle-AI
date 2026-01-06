@@ -35,12 +35,29 @@ type Props = {
 export default function DashboardTabs({ result }: Props) {
   return (
     <Tabs defaultValue="summary" className="w-full">
-      <TabsList className="grid grid-cols-5 gap-1.5 p-1.5 bg-secondary/40 rounded-2xl mb-8">
+
+      {/* ✅ RESTORED TAB BAR */}
+      <TabsList
+        className="
+          flex flex-wrap md:grid md:grid-cols-5
+          gap-1.5 h-auto p-1.5
+          bg-secondary/40 rounded-2xl
+          mb-8 border border-border/40
+        "
+      >
         {["summary", "technical", "sentiment", "news", "fundamentals"].map(tab => (
           <TabsTrigger
             key={tab}
             value={tab}
-            className="uppercase text-xs font-bold tracking-wider"
+            className="
+              flex-1 py-3 px-4
+              rounded-xl
+              font-bold text-xs uppercase tracking-wider
+              transition-all
+              data-[state=active]:bg-background
+              data-[state=active]:shadow-lg
+              data-[state=active]:shadow-black/[0.05]
+            "
           >
             {tab}
           </TabsTrigger>
@@ -49,21 +66,23 @@ export default function DashboardTabs({ result }: Props) {
 
       {/* SUMMARY */}
       <TabsContent value="summary">
-        <Card>
+        <Card className="border-border/60 shadow-sm bg-card">
           <CardContent className="pt-8 flex gap-4">
             <TrendingUp className="w-6 h-6 text-primary mt-1" />
-            <p className="text-lg leading-relaxed">{result.summary}</p>
+            <p className="text-lg leading-relaxed font-medium">
+              {result.summary}
+            </p>
           </CardContent>
         </Card>
       </TabsContent>
 
       {/* TECHNICAL */}
       <TabsContent value="technical">
-        <Card>
+        <Card className="border-border/60 shadow-sm bg-card">
           <CardContent className="pt-8 space-y-3">
             <div className="flex items-center gap-2">
               <BarChart3 className="w-5 h-5 text-primary" />
-              <b>RSI:</b> {result.technical.rsi}
+              <span className="font-bold">RSI:</span> {result.technical.rsi}
             </div>
             <p><b>MACD:</b> {result.technical.macd}</p>
             <p><b>Trend:</b> {result.technical.trend}</p>
@@ -73,11 +92,14 @@ export default function DashboardTabs({ result }: Props) {
 
       {/* SENTIMENT */}
       <TabsContent value="sentiment">
-        <Card>
+        <Card className="border-border/60 shadow-sm bg-card">
           <CardContent className="pt-8 space-y-2">
             <div className="flex items-center gap-2">
               <Activity className="w-5 h-5 text-primary" />
-              <b>Fear & Greed Index:</b> {result.sentiment.fear_greed_index}
+              <span className="font-bold">
+                Fear & Greed Index:
+              </span>
+              {result.sentiment.fear_greed_index}
             </div>
             <p><b>Label:</b> {result.sentiment.label}</p>
           </CardContent>
@@ -86,7 +108,7 @@ export default function DashboardTabs({ result }: Props) {
 
       {/* NEWS */}
       <TabsContent value="news">
-        <Card>
+        <Card className="border-border/60 shadow-sm bg-card">
           <CardContent className="pt-8 flex gap-4">
             <Newspaper className="w-6 h-6 text-primary mt-1" />
             <p className="leading-relaxed">{result.news}</p>
@@ -96,13 +118,14 @@ export default function DashboardTabs({ result }: Props) {
 
       {/* FUNDAMENTALS */}
       <TabsContent value="fundamentals">
-        <Card>
+        <Card className="border-border/60 shadow-sm bg-card">
           <CardContent className="pt-8 flex gap-4">
             <ShieldCheck className="w-6 h-6 text-primary mt-1" />
             <p className="leading-relaxed">{result.fundamentals}</p>
           </CardContent>
         </Card>
       </TabsContent>
+
     </Tabs>
   )
 }
