@@ -68,3 +68,4 @@ pydantic
 python-dotenv
 email-validator
 motor
+passlib[bcrypt]
