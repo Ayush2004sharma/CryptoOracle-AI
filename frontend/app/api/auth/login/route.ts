@@ -17,15 +17,23 @@ export async function POST(req: Request) {
 
     const data = await res.json();
 
+    // 🔒 Normalize FastAPI errors → STRING
     if (!res.ok) {
+      const message =
+        Array.isArray(data?.detail)
+          ? data.detail[0]?.msg
+          : typeof data?.detail === "string"
+          ? data.detail
+          : "Login failed";
+
       return NextResponse.json(
-        { error: data.detail || "Login failed" },
+        { error: message },
         { status: res.status }
       );
     }
 
     return NextResponse.json(data);
-  } catch (err) {
+  } catch (error) {
     return NextResponse.json(
       { error: "Internal Server Error" },
       { status: 500 }
