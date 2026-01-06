@@ -30,6 +30,7 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Badge } from "@/components/ui/badge";
 import { ThemeToggle } from "@/components/theme-toggle";
 import { useRouter } from "next/navigation";
+import { COIN_CONFIG, SupportedCoin } from "@/lib/coins";
 
 // Define API response type based on requirements
 type AnalysisResult = {
@@ -65,13 +66,15 @@ const itemVariants = {
   hidden: { opacity: 0, y: 10 },
   visible: { opacity: 1, y: 0 },
 };
-
-export function CryptoDashboard() {
+type DashboardProps = {
+  coin: SupportedCoin
+  setCoin: (coin: SupportedCoin) => void
+}
+export function CryptoDashboard({ coin, setCoin }: DashboardProps) {
   const [loading, setLoading] = React.useState(false);
   const [result, setResult] = React.useState<AnalysisResult | null>(null);
   const [error, setError] = React.useState<string | null>(null);
   const router = useRouter();
-  const [coin, setCoin] = React.useState("btc");
   const [profile, setProfile] = React.useState("new_buyer");
   const [duration, setDuration] = React.useState("short_term");
 
@@ -202,17 +205,18 @@ export function CryptoDashboard() {
                   Cryptocurrency
                 </label>
                 <Select
-                  value={coin.toUpperCase()}
-                  onValueChange={(v) => setCoin(v.toLowerCase())}
+                  value={coin}
+                  onValueChange={(v) => setCoin(v as SupportedCoin)}
                 >
-                  <SelectTrigger className="bg-background/80 border-border/60 hover:border-primary/30 transition-colors">
+                  <SelectTrigger>
                     <SelectValue placeholder="Select Asset" />
                   </SelectTrigger>
                   <SelectContent>
-                    <SelectItem value="BTC">Bitcoin (BTC)</SelectItem>
-                    <SelectItem value="ETH">Ethereum (ETH)</SelectItem>
-                    <SelectItem value="SOL">Solana (SOL)</SelectItem>
-                    <SelectItem value="DOT">Polkadot (DOT)</SelectItem>
+                    {Object.entries(COIN_CONFIG).map(([key, c]) => (
+                      <SelectItem key={key} value={key}>
+                        {c.label} ({c.short})
+                      </SelectItem>
+                    ))}
                   </SelectContent>
                 </Select>
               </div>
